@@ -21,26 +21,27 @@ Objects:
     * Generated at the end of successful training sessions
 
 Using NHLStatPredict:
-    Run from <tt>rails console</tt> environment
 
-        Setup TrainingPlayers for season x:
-            <tt>FileParsing::CollectData.run!(:season => x)</tt>
-            * By default can only run for 2013 and 2014
-            * More can be added through the XXXXstandings, XXXXbios, XXXXrealtime, and XXXXstats config files
-            * Must be run before trying to do a training session
+Run from <tt>rails console</tt> environment
 
-        Run a training session from season x predicting season y:
-            <tt>Run::TrainNetwork.run!(:train_season => x, :check_season => y, :learning_rate => r, :k => k, :hidden_count => n, :epochs => e)</tt>
-            * Learning rate, k, hidden count, and epochs are all neural network paramters
-            * Suggested values: learning_rate => 0.3, k => 0.6, hidden_count => 9, :epochs => 450
-            * Will run e number of cycles through training data or until the network has learned all that it can learn (based on verification metric)
+Setup TrainingPlayers for season x:
+<tt>FileParsing::CollectData.run!(:season => x)</tt>
+* By default can only run for 2013 and 2014
+* More can be added through the XXXXstandings, XXXXbios, XXXXrealtime, and XXXXstats config files
+* Must be run before trying to do a training session
 
-        See predicted stats for player x in season y:
-            <tt>Run::PredictStats.run!(:name => x, :season => y)</tt>
-            * Ex) <tt>Run::PredictStats.run!(:name => "Sidney Crosby", :season => 2015)</tt>
-            * Logs calculated stats for player based off of latest training session
+Run a training session from season x predicting season y:
+<tt>Run::TrainNetwork.run!(:train_season => x, :check_season => y, :learning_rate => r, :k => k, :hidden_count => n, :epochs => e)</tt>
+* Learning rate, k, hidden count, and epochs are all neural network paramters
+* Suggested values: learning_rate => 0.3, k => 0.6, hidden_count => 9, :epochs => 450
+* Will run e number of cycles through training data or until the network has learned all that it can learn (based on verification metric)
 
-        See top n players for season x:
-            <tt>Run::TopNScores.run!(:season => x, :n => n)</tt>
-            * Returns leaderboard style scorings for players based off of consecutive training sessions
-            * Can be used over large number of sessions to ensure predictions not one time fluke
+See predicted stats for player x in season y:
+<tt>Run::PredictStats.run!(:name => x, :season => y)</tt>
+* Ex) <tt>Run::PredictStats.run!(:name => "Sidney Crosby", :season => 2015)</tt>
+* Logs calculated stats for player based off of latest training session
+
+See top n players for season x:
+<tt>Run::TopNScores.run!(:season => x, :n => n)</tt>
+* Returns leaderboard style scorings for players based off of consecutive training sessions
+* Can be used over large number of sessions to ensure predictions not one time fluke
